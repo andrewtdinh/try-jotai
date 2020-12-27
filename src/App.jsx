@@ -1,3 +1,5 @@
+import React from 'react';
+import { atom, Provider } from 'jotai';
 
 function App() {
   return (
@@ -8,11 +10,11 @@ function App() {
     }}>
       <input
         value={filter}
-        
+
       ></input>
       <div>Hi there!</div>
     </div>
   );
 }
 
-export default App;
+export default (<Provider><App /></Provider>);

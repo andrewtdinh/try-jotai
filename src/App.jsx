@@ -1,5 +1,5 @@
 import React from 'react';
-import { atom, Provider, useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 
 const filterAtom = atom('')
 
@@ -20,5 +20,5 @@ function App() {
   );
 }
 
-export default (<Provider><App /></Provider>);
+export default App;
  

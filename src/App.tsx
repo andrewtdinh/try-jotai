@@ -14,6 +14,7 @@ const filterAtom = atom('');
 const pokemonAtom = atom<Pokemon[]>([]);
 
 const PokemonTable = () => {
+  const [pokemon] = useAtom(pokemonAtom);
   return (
     <table width="100%">
       <tbody>

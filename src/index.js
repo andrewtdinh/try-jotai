@@ -7,7 +7,9 @@ import { Provider } from 'jotai';
 
 ReactDOM.render(
   <Provider>
-    <App />
+    <React.Suspense fallback={<div>Wait a moment while pokemons are loading...</div>}>
+      <App />
+    </React.Suspense>
   </Provider>,
   document.getElementById('root')
 );

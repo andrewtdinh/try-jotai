@@ -24,7 +24,16 @@ function App() {
         value={filter}
         onChange={(evt) => filterSet(evt.target.value)}
       ></input>
-      <div>{JSON.stringify(pokemon)}</div>
+      <table width="100%">
+        <tbody>
+          {pokemon.map(({ id, name: { english }, type }) => (
+            <tr key={id}>
+              <td>{english}</td>
+              <td>{type.join(', ')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

@@ -10,19 +10,23 @@ interface Pokemon {
 
 }
 
-const filterAtom = atom('');
+const filterAtom = atom<string>('');
 const pokemonAtom = atom<Pokemon[]>([]);
 
 const PokemonTable = () => {
+  const [filter] = useAtom(filterAtom);
   const [pokemon] = useAtom(pokemonAtom);
+
   return (
     <table width="100%">
       <tbody>
-        {pokemon.map(({ id, name: { english }, type }) => (
-          <tr key={`${id}`}>
-            <td>{english}</td>
-            <td>{type.join(', ')}</td>
-          </tr>
+        {pokemon
+          .filter((pokemon) => pokemon.name.english.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+          .map(({ id, name: { english }, type }) => (
+            <tr key={`${id}`}>
+              <td>{english}</td>
+              <td>{type.join(', ')}</td>
+            </tr>
         ))}
       </tbody>
     </table>

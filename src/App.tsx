@@ -1,8 +1,17 @@
 import React from 'react';
 import { atom, useAtom } from 'jotai';
 
+interface Pokemon {
+  id: Number;
+  name: {
+    english: string;
+  }
+  type: string[];
+
+}
+
 const filterAtom = atom('');
-const pokemonAtom = atom([]);
+const pokemonAtom = atom<Pokemon[]>([]);
 
 function App() {
   const [filter, filterSet] = useAtom(filterAtom);
@@ -27,7 +36,7 @@ function App() {
       <table width="100%">
         <tbody>
           {pokemon.map(({ id, name: { english }, type }) => (
-            <tr key={id}>
+            <tr key={`${id}`}>
               <td>{english}</td>
               <td>{type.join(', ')}</td>
             </tr>

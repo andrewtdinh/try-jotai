@@ -42,19 +42,25 @@ const PokemonTable = () => {
   )
 }
 
-function App() {
+const PokemonFilter = () => {
   const [filter, filterSet] = useAtom(filterAtom);
 
+  return (
+    <input
+      value={filter}
+      onChange={(evt) => filterSet(evt.target.value)}
+    ></input>
+  );
+}
+
+function App() {
   return (
     <div style={{
       width: 800,
       margin: 'auto',
       padding: '1rem',
     }}>
-      <input
-        value={filter}
-        onChange={(evt) => filterSet(evt.target.value)}
-      ></input>
+      <PokemonFilter />
       <PokemonTable />
     </div>
   );

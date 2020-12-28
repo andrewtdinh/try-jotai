@@ -4,7 +4,7 @@ import { atom, Provider, useAtom } from 'jotai';
 const filterAtom = atom('')
 
 function App() {
-  const [filter, setFilter] = useAtom(filterAtom);
+  const [filter, filterSet] = useAtom(filterAtom);
   return (
     <div style={{
       width: 800,
@@ -13,9 +13,9 @@ function App() {
     }}>
       <input
         value={filter}
-
+        onChange={(evt) => filterSet(evt.target.value)}
       ></input>
-      <div>Hi there!</div>
+      <div>{filter}</div>
     </div>
   );
 }

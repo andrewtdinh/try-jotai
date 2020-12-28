@@ -17,18 +17,16 @@ const pokemonFilteredAtom = atom<Pokemon[]>((get) =>
     pokemon.name.english
       .toLocaleLowerCase()
       .includes(get(filterAtom).toLocaleLowerCase())
-  );
+  )
 );
 
 const PokemonTable = () => {
-  const [filter] = useAtom(filterAtom);
-  const [pokemon] = useAtom(pokemonAtom);
+  const [pokemon] = useAtom(pokemonFilteredAtom);
 
   return (
     <table width="100%">
       <tbody>
         {pokemon
-          .filter((pokemon) => pokemon.name.english.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
           .map(({ id, name: { english }, type }) => (
             <tr key={`${id}`}>
               <td>{english}</td>

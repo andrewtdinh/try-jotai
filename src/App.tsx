@@ -13,6 +13,21 @@ interface Pokemon {
 const filterAtom = atom('');
 const pokemonAtom = atom<Pokemon[]>([]);
 
+const PokemonTable = () => {
+  return (
+    <table width="100%">
+      <tbody>
+        {pokemon.map(({ id, name: { english }, type }) => (
+          <tr key={`${id}`}>
+            <td>{english}</td>
+            <td>{type.join(', ')}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}
+
 function App() {
   const [filter, filterSet] = useAtom(filterAtom);
   const [pokemon, pokemonSet] = useAtom(pokemonAtom);
@@ -33,16 +48,7 @@ function App() {
         value={filter}
         onChange={(evt) => filterSet(evt.target.value)}
       ></input>
-      <table width="100%">
-        <tbody>
-          {pokemon.map(({ id, name: { english }, type }) => (
-            <tr key={`${id}`}>
-              <td>{english}</td>
-              <td>{type.join(', ')}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <PokemonTable />
     </div>
   );
 }

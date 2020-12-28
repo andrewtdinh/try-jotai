@@ -1,6 +1,8 @@
 import React from 'react';
 import { atom, Provider } from 'jotai';
 
+const filterAtom = atom('')
+
 function App() {
   return (
     <div style={{
@@ -18,3 +20,4 @@ function App() {
 }
 
 export default (<Provider><App /></Provider>);
+ 

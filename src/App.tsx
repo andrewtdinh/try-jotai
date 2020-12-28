@@ -12,6 +12,13 @@ interface Pokemon {
 
 const filterAtom = atom<string>('');
 const pokemonAtom = atom<Pokemon[]>([]);
+const pokemonFilteredAtom = atom<Pokemon[]>((get) => 
+  get(pokemonAtom).filter((pokemon) =>
+    pokemon.name.english
+      .toLocaleLowerCase()
+      .includes(get(filterAtom).toLocaleLowerCase())
+  );
+);
 
 const PokemonTable = () => {
   const [filter] = useAtom(filterAtom);

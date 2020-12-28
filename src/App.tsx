@@ -1,28 +1,6 @@
 import React from 'react';
-import { atom, useAtom } from 'jotai';
-
-interface Pokemon {
-  id: Number;
-  name: {
-    english: string;
-  }
-  type: string[];
-
-}
-
-const filterAtom = atom<string>('');
-const pokemonAtom = atom<Pokemon[]>(async () => 
-  fetch(
-    'https://gist.githubusercontent.com/jherr/23ae3f96cf5ac341c98cd9aa164d2fe3/raw/f8d792f5b2cf97eaaf9f0c2119918f333e348823/pokemon.json'
-  ).then((resp) => resp.json())
-);
-const pokemonFilteredAtom = atom<Pokemon[]>((get) => 
-  get(pokemonAtom).filter((pokemon) =>
-    pokemon.name.english
-      .toLocaleLowerCase()
-      .includes(get(filterAtom).toLocaleLowerCase())
-  )
-);
+import { useAtom } from 'jotai';
+import { filterAtom, pokemonFilteredAtom } from './store';
 
 const PokemonTable = () => {
   const [pokemon] = useAtom(pokemonFilteredAtom);
